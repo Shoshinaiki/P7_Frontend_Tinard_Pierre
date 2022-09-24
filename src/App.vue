@@ -62,10 +62,10 @@ export default {
 header {
   display: flex;
   flex-direction: row;
-  margin: 5rem auto;
+  margin: 2.5rem auto;
   background-color: white;
   height: 8rem;
-  width: 50rem;
+  width: 65rem;
   font-size: 12px;
   border-radius: 15px;
   box-shadow: 10px 5px 5px #4E5166;
@@ -133,7 +133,7 @@ a {
   }
 }
 
-@media all and (max-width: 1000px) {
+@media all and (max-width: 1090px) {
   header {
     display: flex;
     flex-direction: column;
@@ -145,8 +145,7 @@ a {
   .socialNetwork {
     display: flex;
     justify-content: flex-start;
-    padding-top: 1.5rem;
-    margin: 1rem 0 1rem 4rem;
+    margin: 0rem 0rem 1rem 4rem;
     padding-left: 0;
   }
   
@@ -160,7 +159,7 @@ a {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  margin: 0 0 0 -7rem;
+  margin: 0 0 0 2rem;
   padding: 0;
   width: auto;
   }
@@ -169,6 +168,7 @@ a {
 @media all and (max-width: 515px) {
   header {
     width: 20rem;
+    height: 15rem;
     margin: 2rem auto;
   }
 
@@ -184,7 +184,7 @@ a {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  margin: 0 0 0 -2rem;
+  margin: 0 0 0 0.5rem;
   padding: 0;
   width: auto;
   }

@@ -2,8 +2,8 @@
   <div class="h1Users"><h1>Utilisateurs connectés</h1></div>
     <div class="admin">
       <div v-for="user in users" :key="user.userId" class="users">
-        <div class="label"><label for="email">e-mail:  </label></div>
-        <div><p>{{user.email}}</p></div>
+        <div v-if="user.id != this.currentUser.userId" class="label"><label for="email">e-mail:</label></div>
+        <div v-if="user.id != this.currentUser.userId" class="userEmail"><p>{{user.email}}</p></div>
         <div v-if="user.id != this.currentUser.userId"><button @click="deleteUser(user.id)" class="button_delete" type="submit">Supprimer</button></div>
       </div>
     </div>
@@ -67,28 +67,28 @@ export default {
 
   .users {
     display: flex;
-    align-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    border-radius: 15px;
-    border: solid 1px #4E5166;
-    box-shadow: 10px 5px 5px #4E5166;
-    padding: 1rem;
-    margin: 2rem;
+    margin: 1.5rem 3rem 1.5rem 1.5rem;
     height: 3rem;
     width: auto;
   }
 
-  #email {
-    margin-left: 2rem;
+  .label {
+    width: auto;
   }
 
   .button_delete {
-    margin-left: 1.5rem;
     padding: 0.5rem;
     border-radius: 10px;
     border: 1px solid #FFD707;
   }
-  
+  @media all and (max-width: 1090px) {
+    .users {
+      height: 1.5rem;
+    }
+  }
+
   @media all and (max-width: 515px) {
   .admin {
     display: flex;
@@ -98,8 +98,7 @@ export default {
 
  .users {
     align-items: normal;
-    margin: 1rem;
-    height: 4rem;
+    margin: 1.5rem;
     width: auto;
   }
 
