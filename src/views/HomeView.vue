@@ -97,6 +97,7 @@ export default {
   justify-content: flex-start;
   border-radius: 15px;
   border: solid 1px #4E5166;
+  box-shadow: 5px 1px 1px #4e5166;
   width: auto;
 }
 
