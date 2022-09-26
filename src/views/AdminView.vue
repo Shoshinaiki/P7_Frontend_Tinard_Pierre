@@ -1,5 +1,5 @@
 <template>
-  <div class="h1Users"><h1>Utilisateurs connectés</h1></div>
+  <div class="h1Users"><h1>Utilisateurs non admin</h1></div>
     <div class="admin">
       <div v-for="user in users" :key="user.userId" class="users">
         <div v-if="user.id != this.currentUser.userId" class="label"><label for="email">e-mail:</label></div>

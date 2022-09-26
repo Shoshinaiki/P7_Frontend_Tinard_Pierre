@@ -62,6 +62,7 @@ export default {
 header {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   margin: 2.5rem auto;
   background-color: white;
   height: 8rem;

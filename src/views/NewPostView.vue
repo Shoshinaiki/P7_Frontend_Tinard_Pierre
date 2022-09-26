@@ -1,12 +1,13 @@
 <template>
     <div class="NewPost">
-      <h1>Créer un post</h1>
+      <h1 class="postH1">Créer un post</h1>
       <div class="info"><p>Veuillez remplir tout les champs et valider :</p></div>
       <form @submit.prevent="createPost">
-        <div>
+        <div class="dataPost">
           <label for="titre">Titre</label>
           <input type="text" id="titre" v-model="this.titre" name="titre" placeholder="titre" required>
           <textarea name="texte" id="text" cols="30" rows="10" required placeholder="content" v-model="this.content"></textarea>
+          <input type="file" ref="file" @change="onFileSelected" required/>
            <button type="submit" class="button_validate">Poster</button> 
         </div>
       </form>
@@ -21,6 +22,7 @@ export default {
         return{
             titre: "",
             content: "",
+            file: ""
         }
     },
   computed: {
@@ -36,22 +38,26 @@ export default {
     
   methods: {
     createPost() { 
-      let data = {
-        titre: this.titre,
-        text: this.content,
-        author: this.currentUser.lastName
-      }
+     const data = new FormData();
+      data.append('file', this.file, this.file.name);
+      data.append('titre', this.titre);
+      data.append('text', this.content);
+      data.append('author', this.currentUser.lastName);
       postService.createPost(data)
       .then(() => {
         this.$router.push("/")
       })
+    },
+    onFileSelected() {
+            const file = this.$refs.file.files[0];
+            this.file = file;
     }
   },
 }
 </script>
 
 <style lang="scss" scoped>
- .container {
+ .NewPost {
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -65,8 +71,26 @@ export default {
     width: 30rem;
   }
 
-  .button_create, .button_modify, .button_delete {
-    margin: 1.5rem;
+  .postH1 {
+    margin: 2rem;
+  }
+
+  .info {
+    margin-bottom: 0;
+  }
+
+  .dataPost {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 3rem;
+  }
+
+  #titre {
+    margin: 1rem;
+  }
+
+  .button_validate {
+    margin: 2rem;
     padding: 0.5rem;
     border-radius: 10px;
     border: 1px solid #FFD707;
@@ -80,9 +104,14 @@ export default {
 
 @media all and (max-width: 1000px) {
   
-  .container {
+  .NewPost {
     height: 25rem;
   }
+
+  .postH1 {
+    margin: 0.5rem;
+  }
+
 
   .infos {
     margin: 2rem;
@@ -90,7 +119,7 @@ export default {
 }
 
   @media all and (max-width: 515px) {
-  .container {
+  .NewPost {
     width: 20rem;
   }
 
