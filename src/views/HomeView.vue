@@ -2,10 +2,10 @@
   <div class="home">
     <div v-for="post in posts.slice().reverse()" :key="post.id" class="users">
       <div class="card">
-        <div class="postTitle"><p>Titre: {{post.titre}}</p></div>
+        <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><i class="fas fa-heart"></i></div></div>
         <img class="image" :src="post.imageUrl">
         <div class="postText"><p> {{post.text}}</p></div>
-        <div class="context"><div class="postBy"><p>Créé par : {{post.author}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
+        <div class="context"><div class="postBy"><p>Créé par: {{post.author}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
         <div class="buttonPost">
         <div><button @click="modifyPost(post.id)" class="button_modify" type="submit">Modifier</button></div>
         <div><button @click="deletePost(post.id)" class="button_delete" type="submit">Supprimer</button></div>
@@ -66,7 +66,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: auto;
-  width: 70%;
+  width: 62%;
   margin: 1rem auto;
   padding: 1rem;
 }
@@ -101,6 +101,29 @@ export default {
   width: auto;
 }
 
+.postTitle {
+   display: flex;
+   justify-content: space-between;
+   width: auto;
+   margin: 0 3rem 0 0;
+}
+
+.heartcontainer{
+    position: relative;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.fas.fa-heart{
+    opacity: 1;
+    background-color: white;
+    border: 5px;
+}
+
 .image {
   width: 100%;
   height: 25rem;
@@ -127,8 +150,7 @@ p {
 @media all and (max-width: 1000px) {
   
   .users {
-    display: flex;
-    width: 20rem;
+    min-width: 55%;
   }
 
   .infos {
@@ -136,13 +158,8 @@ p {
   }
 }
 
-  @media all and (max-width: 515px) {
-  .users {
-    width: 18rem;
-    height: 15rem;
-    padding: 1rem;
-  }
-
+  @media all and (max-width: 700px) {
+  
   p {
     padding: 0.5rem;
   }

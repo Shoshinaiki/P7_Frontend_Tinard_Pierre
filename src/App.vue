@@ -1,9 +1,6 @@
 <template>
     <header>
-        <h1 class="socialNetwork">Réseau social</h1>
-        <div class="imgH1">
-          <img src="../src/assets/icon-left-font.png" height="60" width="300" alt="logo">
-        </div>
+        <img class="imgH1" src="../src/assets/icon-left-font.png" height="60" width="300" alt="logo">
         <div class="nav">
           <nav>
             <router-link v-if="currentUser" to="/profil">Profil</router-link> 
@@ -43,6 +40,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 * {
   font-family: 'Lato',serif;
   margin: 0;
@@ -98,6 +96,11 @@ a {
     border: 1px solid #FFD707;
 }
 
+.titleLogo {
+  display: flex;
+  flex-direction: row;
+}
+
 .socialNetwork {
   margin-left: 2rem;
   padding-top: 3rem;
@@ -113,50 +116,58 @@ a {
   color: #FD2001;
 }
 
-@media all and (max-width: 1550px) {
-  header {
-    display: flex;
-    margin: 2rem auto;
-    height: 5rem;
-  }
-
-  .socialNetwork {
+.socialNetwork {
     margin-left: 4rem;
-    padding-top: 1.6rem;
 }
 
-  .imgH1 {
-  padding-top: 1rem;
-  }
-
-  a {
+a {
     padding: 0.5rem;
-  }
 }
 
-@media all and (max-width: 1090px) {
+@media all and (max-width: 1100px) {
+
   header {
     display: flex;
     flex-direction: column;
-    margin: 2rem auto;
-    width: 30rem;
-    height: 15rem;
+    justify-content: center;
+    align-items: center;
+    width: 40rem;
+    height: auto;
   }
 
   .socialNetwork {
-    display: flex;
-    justify-content: flex-start;
-    margin: 0rem 0rem 1rem 4rem;
-    padding-left: 0;
+    margin-left: 6rem;
   }
-  
-  .imgH1 {
-    display: flex;
-    padding: 0;
-    margin: 0 0 0 2.5rem;
 
+  .imgH1 {
+    margin: 0;
+    object-fit: cover;
+    padding-top: 2rem;
   }
+
+  .group-name {
+    color: #FD2001;
+  }
+
   .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: auto;
+  }
+}
+
+@media all and (max-width: 1000px) {
+
+.socialNetwork {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0rem 0rem 1rem 4rem;
+  padding-left: 0;
+}
+  
+.nav {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -189,7 +200,5 @@ a {
   padding: 0;
   width: auto;
   }
-
-
 }
 </style>
