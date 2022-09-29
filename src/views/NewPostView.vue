@@ -45,7 +45,7 @@ export default {
       data.append('author', this.currentUser.lastName);
       postService.createPost(data)
       .then(() => {
-        this.$router.push("/")
+      this.$router.push("/")
       })
     },
     onFileSelected() {

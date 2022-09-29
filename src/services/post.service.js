@@ -19,6 +19,10 @@ class PostService {
   deletePost(id) {
     return axios.delete(API_URL + id, { users: authHeader() });
   }
+
+  modifyPost(id, data) {
+    return axios.put(API_URL + id, data, { users: authHeader() });
+  }
 }
 
 export default new PostService();

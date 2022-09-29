@@ -2,16 +2,15 @@
   <div class="home">
     <div v-for="post in posts.slice().reverse()" :key="post.id" class="users">
       <div class="card">
-        <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><i class="fas fa-heart"></i></div></div>
+        <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><i v-if="like" class="fas fa-heart"></i></div></div>
         <img class="image" :src="post.imageUrl">
         <div class="postText"><p> {{post.text}}</p></div>
         <div class="context"><div class="postBy"><p>Créé par: {{post.author}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
         <div class="buttonPost">
-        <div><button @click="modifyPost(post.id)" class="button_modify" type="submit">Modifier</button></div>
-        <div><button @click="deletePost(post.id)" class="button_delete" type="submit">Supprimer</button></div>
+          <div><button @click="modifyPost(post.id)" class="button_modify" type="submit">Modifier</button></div>
+          <div><button @click="deletePost(post.id)" class="button_delete" type="submit">Supprimer</button></div>
+        </div>
       </div>
-      </div>
-      
     </div>
   </div>
 </template>
@@ -48,10 +47,13 @@ export default {
         .then((response) => {
         this.posts = response.data;
         })
-      })
+    })
     },
-  },
-}
+    modifyPost(postid) {
+      this.$router.push({path:'/modifypost', query: {id: postid}})
+    }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -102,26 +104,26 @@ export default {
 }
 
 .postTitle {
-   display: flex;
-   justify-content: space-between;
-   width: auto;
-   margin: 0 3rem 0 0;
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+  margin: 0 3rem 0 0;
 }
 
 .heartcontainer{
-    position: relative;
-    width: 3.5rem;
-    height: 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  position: relative;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-.fas.fa-heart{
-    opacity: 1;
-    background-color: white;
-    border: 5px;
+.fas.fa-heart {
+  opacity: 1;
+  background-color: white;
+  border: 5px;
 }
 
 .image {
@@ -140,11 +142,11 @@ p {
 }
 
 .button_modify, .button_delete {
-    display: flex;
-    border-radius: 10px;
-    border: 1px solid #FFD707;
-    padding: 0.5rem;
-    margin: 1rem;
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid #FFD707;
+  padding: 0.5rem;
+  margin: 1rem;
   }
 
 @media all and (max-width: 1000px) {
@@ -158,22 +160,53 @@ p {
   }
 }
 
-  @media all and (max-width: 700px) {
+  @media all and (max-width: 685px) {
+
+  .users {
+    margin-left: 6.5rem;
+
+  }
+
+  .card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  border: solid 1px #4E5166;
+  box-shadow: 5px 2px 2px #4e5166;
+  width: 70%;
+  margin-left: 1rem;
+  padding: 1rem;
+  //gap: 0.5rem;
+}
   
   p {
     padding: 0.5rem;
   }
 
-  .buttonPost {
-    width: 16rem;
+  .button_modify, .button_delete {
+    display: flex;
+    border-radius: 10px;
+    border: 1px solid #FFD707;
+    padding: 0.5rem;
+    margin: 1rem;
+  }
+}
+
+@media all and (max-width: 685px) {
+
+  .users {
+    margin-left: 6rem;
+
   }
 
-  .button_modify {
-    margin: 0 0.5rem;
+}
+
+@media all and (max-width: 500px) { 
+
+  .users { 
+    margin-left: 4rem;
+
   }
 
-  .button_delete {
-    margin: 0 6.8rem 1rem;
-  }
 }
 </style>

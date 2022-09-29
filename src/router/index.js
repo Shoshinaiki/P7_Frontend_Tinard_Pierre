@@ -5,6 +5,7 @@ import InscriptionView from '../views/InscriptionView.vue'
 import ProfilView from '../views/ProfilView.vue'
 import AdminView from '../views/AdminView.vue'
 import NewPostView from '../views/NewPostView'
+import ModifyPostView from '../views/ModifyPostView'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/newpost',
     name: 'newpost',
     component: NewPostView
+  },
+  {
+    path: '/modifypost',
+    name: 'modifypost',
+    component: ModifyPostView 
   }
 ]
 

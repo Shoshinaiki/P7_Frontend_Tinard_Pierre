@@ -177,7 +177,7 @@ a {
   }
 }
 
-@media all and (max-width: 515px) {
+@media all and (max-width: 685px) {
   header {
     width: 20rem;
     height: 15rem;
