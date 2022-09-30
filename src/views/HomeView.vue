@@ -2,7 +2,7 @@
   <div class="home">
     <div v-for="post in posts.slice().reverse()" :key="post.id" class="users">
       <div class="card">
-        <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><i v-if="like" class="fas fa-heart"></i></div></div>
+        <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><i class="fas fa-heart"></i></div></div>
         <img class="image" :src="post.imageUrl">
         <div class="postText"><p> {{post.text}}</p></div>
         <div class="context"><div class="postBy"><p>Créé par: {{post.author}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
@@ -120,15 +120,15 @@ export default {
   cursor: pointer;
 }
 
-.fas.fa-heart {
-  opacity: 1;
-  background-color: white;
-  border: 5px;
+.fas.fa-heart:hover {
+  color: black;
+  color: red;
 }
 
 .image {
   width: 100%;
   height: 25rem;
+  border-radius: 10px;
   object-fit: cover;
 }
 
