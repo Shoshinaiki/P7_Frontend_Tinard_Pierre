@@ -7,8 +7,8 @@
         <div class="postText"><p> {{post.text}}</p></div>
         <div class="context"><div class="postBy"><p>Créé par: {{post.author}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
         <div class="buttonPost">
-          <div><button @click="modifyPost(post.id)" class="button_modify" type="submit">Modifier</button></div>
-          <div><button @click="deletePost(post.id)" class="button_delete" type="submit">Supprimer</button></div>
+          <div><button @click="modifyPost(post.id)" v-if="post.author == currentUser.lastName || currentUser.role == true" class="button_modify" type="submit">Modifier</button></div>
+          <div><button @click="deletePost(post.id)" class="button_delete" v-if="post.author == currentUser.lastName || currentUser.role == true" type="submit">Supprimer</button></div>
         </div>
       </div>
     </div>

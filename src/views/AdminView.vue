@@ -27,6 +27,10 @@ export default {
     if (!this.currentUser) {
       this.$router.push("/inscription");
     }
+    if (this.currentUser.role != true) {
+      alert("vous n'êtes pas administrateur")
+      this.$router.push("/")
+    }
   userService.getAllUsers() 
       .then((response) => {
         this.users = response.data;
