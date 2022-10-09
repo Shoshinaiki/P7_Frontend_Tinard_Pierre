@@ -1,7 +1,7 @@
 <template>
   <div class="modifyPost">
       <div class="card">
-        <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><i class="fas fa-heart"></i></div></div>
+        <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><p>{{post.like}}</p></div></div>
         <img class="image" :src="post.imageUrl">
         <div class="postText"><p> {{post.text}}</p></div>
         <div class="context"><div class="postBy"><p>Créé par: {{post.author}}</p></div> <div class="postAt"></div></div>
@@ -10,9 +10,9 @@
           <p class="champ">Veuillez remplir tout les champs et valider :</p><br>
           <form @submit.prevent="modifyPost">
             <label for="title">Titre</label>
-            <input v-model="this.titre" type="text" required/>
-            <textarea name="texte" id="text" cols="30" rows="10" required placeholder="content" v-model="this.content"></textarea>
-            <input type="file" ref="file" @change="onFileSelected" required/>
+            <input v-model="this.titre" type="text" />
+            <textarea name="texte" id="text" cols="30" rows="10" placeholder="content" v-model="this.content"></textarea>
+            <input type="file" ref="file" @change="onFileSelected" />
             <button type="submit" class="button_validate">Poster</button> 
           </form>
         </div>
@@ -53,9 +53,15 @@ export default {
       modifyPost() {
         let id = this.$route.query.id;
         const data = new FormData();
-          data.append('file', this.file, this.file.name);
-          data.append('titre', this.titre);
-          data.append('text', this.content);
+          if(this.file !="") {
+            data.append('file', this.file, this.file.name);
+          }
+          if(this.titre != "") {
+            data.append('titre', this.titre);
+          }
+          if(this.content !="") {
+            data.append('text', this.content);
+          }
           data.append('author', this.currentUser.lastName);
           postService.modifyPost(id, data)
           .then(() => {

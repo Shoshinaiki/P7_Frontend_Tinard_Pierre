@@ -2,7 +2,7 @@
   <div class="home">
     <div v-for="post in posts.slice().reverse()" :key="post.id" class="users">
       <div class="card">
-        <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><i class="fas fa-heart"></i></div></div>
+        <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><button class="like" @click="likePost(post.id)"><i v-if="(post.userLiked).includes(currentUser.userId)"  class="fas fa-heart red"></i><i v-else class="fas fa-heart black"></i></button><p>{{post.like}}</p></div></div>
         <img class="image" :src="post.imageUrl">
         <div class="postText"><p> {{post.text}}</p></div>
         <div class="context"><div class="postBy"><p>Créé par: {{post.author}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-</template>
+</template> 
 
 <script>
 import postService from "../services/post.service"
@@ -22,7 +22,7 @@ export default {
   name: 'HomeView',
    data(){
         return{
-           posts: []
+           posts: [],
         }
     },
     computed: {
@@ -51,10 +51,19 @@ export default {
     },
     modifyPost(postid) {
       this.$router.push({path:'/modifypost', query: {id: postid}})
+    },
+    likePost(id) {
+     postService.likePost(id, this.currentUser.userId)
+     .then(() => {
+        postService.getAllPost() 
+        .then((response) => {
+        this.posts = response.data;
+        })
+     })
     }
-    }
+   }
   }
-</script>
+  </script>
 
 <style lang="scss" scoped>
 
@@ -120,8 +129,16 @@ export default {
   cursor: pointer;
 }
 
-.fas.fa-heart:hover {
+.like {
+  border: none;
+  background: white;
+}
+
+.fas.fa-heart.black {
   color: black;
+}
+
+.fas.fa-heart.red {
   color: red;
 }
 

@@ -23,6 +23,10 @@ class PostService {
   modifyPost(id, data) {
     return axios.put(API_URL + id, data, { users: authHeader() });
   }
+
+  likePost(id, userId) { 
+    return axios.put(API_URL + id + "/" + userId,  { users: authHeader() } );
+  }
 }
 
 export default new PostService();
