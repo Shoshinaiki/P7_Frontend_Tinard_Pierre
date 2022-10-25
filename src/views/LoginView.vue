@@ -5,11 +5,11 @@
   <form @submit.prevent="handleLogin">
     <div>
       <label for="email">Votre e-mail</label>
-      <input type="email" id="email" v-model="this.email" name="email" placeholder="adresse@mail.com" required>
+      <input type="email" id="email" v-model="this.email" name="email" placeholder="  adresse@mail.com" required>
     </div>
     <div>
       <label for="password">Votre password</label>
-      <input type="password" id="password" v-model="this.password" name="password" placeholder="password" required>
+      <input type="password" id="password" v-model="this.password" name="password" placeholder="  password" required>
     </div>
     <div>
       <button type="submit" class="button_validate">Valider</button>
@@ -52,6 +52,8 @@ export default {
   .login {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    background-color: #FFD7D7;
     border: 5px #FD2001;
     border-radius: 15px;
     border: solid 1px #4E5166;
@@ -63,28 +65,34 @@ export default {
   }
 
   .connexion {
-    justify-content: center;
-    margin: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 0.8rem;
   }
 
   .info {
-    margin: 0.5rem;
+    margin-bottom: 1.5rem;
   }
 
-  label, #email {
+  #password, #email {
     display: flex;
     flex-direction: column;
     margin: 0.8rem;
+    background-color: #f5f5f5;
     margin-left: auto;
     margin-right: auto;
+    border: 1px solid #4E5166;
+    height: 20px;
+    border-radius: 5px;
   }
 
   .button_validate {
     margin: 1.5rem;
     padding: 0.5rem;
     border-radius: 10px;
-    border: 1px solid #FFD707;
+    background-color: #FD2D01;
+  border: 1px solid #4E5166;
+  color: white;
+  font-weight: bold;
   }
 
   @media all and (max-width: 1550px) {

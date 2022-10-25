@@ -4,9 +4,8 @@
       <div class="info"><p>Veuillez remplir tout les champs et valider :</p></div>
       <form @submit.prevent="createPost">
         <div class="dataPost">
-          <label for="titre">Titre</label>
-          <input type="text" id="titre" v-model="this.titre" name="titre" placeholder="titre" required>
-          <textarea name="texte" id="text" cols="30" rows="10" required placeholder="content" v-model="this.content"></textarea>
+          <input type="text" id="titre" v-model="this.titre" name="titre" placeholder=" titre" required>
+          <textarea name="texte" id="text" cols="30" rows="10" required placeholder=" content" v-model="this.content"></textarea>
           <input type="file" ref="file" @change="onFileSelected" required/>
            <button type="submit" class="button_validate">Poster</button> 
         </div>
@@ -60,7 +59,8 @@ export default {
  .NewPost {
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: #FFD7D7;
+    justify-content: center;
     border: 5px #FD2001;
     border-radius: 15px;
     border: solid 1px #4E5166;
@@ -72,11 +72,11 @@ export default {
   }
 
   .postH1 {
-    margin: 2rem;
+    margin-bottom: 0.5rem;
   }
 
   .info {
-    margin-bottom: 0;
+    margin-bottom: 1.5rem;
   }
 
   .dataPost {
@@ -86,14 +86,29 @@ export default {
   }
 
   #titre {
-    margin: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f5f5f5;
+    border: 1px solid #4E5166;
+    height: 20px;
+    border-radius: 5px;
+  }
+
+  #text {
+    margin-bottom: 1rem;
+    background-color: #f5f5f5;
+    border: 1px solid #4E5166;
+    border-radius: 5px;
   }
 
   .button_validate {
-    margin: 2rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-    border: 1px solid #FFD707;
+    margin: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: #FD2D01;
+  border: 1px solid #4E5166;
+  color: white;
+  font-weight: bold;
+
   }
 
  @media all and (max-width: 1550px) {

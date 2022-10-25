@@ -1,10 +1,9 @@
 <template>
-  <div class="h1Users"><h1>Utilisateurs non admin</h1></div>
     <div class="admin">
       <div v-for="user in users" :key="user.userId" class="users">
-        <div v-if="user.id != this.currentUser.userId" class="label"><label for="email">e-mail:</label></div>
-        <div v-if="user.id != this.currentUser.userId" class="userEmail"><p>{{user.email}}</p></div>
-        <div v-if="user.id != this.currentUser.userId"><button @click="deleteUser(user.id)" class="button_delete" type="submit">Supprimer</button></div>
+        <div class="label"><label for="email">e-mail:</label></div>
+        <div class="userEmail"><p>{{user.email}}</p></div>
+        <div><button :disable ="user.id = this.currentUser.userId" @click="deleteUser(user.id)" class="button_delete" type="submit">Supprimer</button></div>
       </div>
     </div>
 </template>
@@ -56,24 +55,21 @@ export default {
   .admin {
     display: flex;
     flex-direction: column;
+    background-color: #FFD7D7;
     border-radius: 15px;
     border: solid 1px #4E5166;
     box-shadow: 10px 5px 5px #4E5166;
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    width: 30rem;
-  }
-
-  .h1Users {
-    margin: 2rem;
+    width: 40%;
   }
 
   .users {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 1.5rem 3rem 1.5rem 1.5rem;
+    margin: 1rem 1.5rem 1rem 1.5rem;
     height: 3rem;
     width: auto;
   }
@@ -85,7 +81,10 @@ export default {
   .button_delete {
     padding: 0.5rem;
     border-radius: 10px;
-    border: 1px solid #FFD707;
+     background-color: #FD2D01;
+  border: 1px solid #4E5166;
+  color: white;
+  font-weight: bold;
   }
   @media all and (max-width: 1090px) {
     .users {

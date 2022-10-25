@@ -1,16 +1,12 @@
 <template>
-  <div class="home">
-    <div v-for="post in posts.slice().reverse()" :key="post.id" class="users">
-      <div class="card">
-        <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><button class="like" @click="likePost(post.id)"><i v-if="(post.userLiked).includes(currentUser.userId)"  class="fas fa-heart red"></i><i v-else class="fas fa-heart black"></i></button><p>{{post.like}}</p></div></div>
-        <img class="image" :src="post.imageUrl">
-        <div class="postText"><p> {{post.text}}</p></div>
-        <div class="context"><div class="postBy"><p>Créé par: {{post.author}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
-        <div class="buttonPost">
-          <div><button @click="modifyPost(post.id)" v-if="post.author == currentUser.lastName || currentUser.role == true" class="button_modify" type="submit">Modifier</button></div>
-          <div><button @click="deletePost(post.id)" class="button_delete" v-if="post.author == currentUser.lastName || currentUser.role == true" type="submit">Supprimer</button></div>
-        </div>
-      </div>
+  <div v-for="post in posts.slice().reverse()" :key="post.id" class="card">
+    <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><button class="like" @click="likePost(post.id)"><i v-if="(post.userLiked).includes(currentUser.userId)"  class="fas fa-heart red"></i><i v-else class="fas fa-heart black"></i></button><p>{{post.like}}</p></div></div>
+    <img class="image" :src="post.imageUrl">
+    <div class="postText"><p> {{post.text}}</p></div>
+    <div class="context"><div class="postBy"><p>Créé par: {{post.author}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
+    <div class="buttonPost">
+      <div><button @click="modifyPost(post.id)" v-if="post.author == currentUser.lastName || currentUser.role == true" class="button_modify" type="submit">Modifier</button></div>
+      <div><button @click="deletePost(post.id)" class="button_delete" v-if="post.author == currentUser.lastName || currentUser.role == true" type="submit">Supprimer</button></div>
     </div>
   </div>
 </template> 
@@ -20,6 +16,7 @@ import postService from "../services/post.service"
 
 export default {
   name: 'HomeView',
+  
    data(){
         return{
            posts: [],
@@ -67,28 +64,14 @@ export default {
 
 <style lang="scss" scoped>
 
-.home {
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
-}
-
-.users {
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  width: 62%;
-  margin: 1rem auto;
-  padding: 1rem;
-}
-
 .card {
   display: flex;
   flex-direction: column;
+  background-color: #FFD7D7;
   border-radius: 15px;
   border: solid 1px #4E5166;
   box-shadow: 5px 2px 2px #4e5166;
-  width: 80%;
+  width: 50%;
   padding: 1rem;
   gap: 0.5rem;
 }
@@ -106,6 +89,7 @@ export default {
 .postText {
   display: flex;
   justify-content: flex-start;
+  background-color: #F5F5F5;
   border-radius: 15px;
   border: solid 1px #4E5166;
   box-shadow: 5px 1px 1px #4e5166;
@@ -119,7 +103,7 @@ export default {
   margin: 0 3rem 0 0;
 }
 
-.heartcontainer{
+.heartcontainer {
   position: relative;
   width: 3.5rem;
   height: 3.5rem;
@@ -131,7 +115,7 @@ export default {
 
 .like {
   border: none;
-  background: white;
+  background: #FFD7D7;
 }
 
 .fas.fa-heart.black {
@@ -161,10 +145,14 @@ p {
 .button_modify, .button_delete {
   display: flex;
   border-radius: 10px;
-  border: 1px solid #FFD707;
+  background-color: #FD2D01;
+  border: 1px solid #4E5166;
+  color: white;
+  font-weight: bold;
   padding: 0.5rem;
   margin: 1rem;
   }
+
 
 @media all and (max-width: 1000px) {
   

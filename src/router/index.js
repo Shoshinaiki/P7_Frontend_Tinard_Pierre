@@ -31,7 +31,7 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
-    component: AdminView
+    component: AdminView 
   },
   {
     path: '/newpost',
@@ -43,6 +43,7 @@ const routes = [
     name: 'modifypost',
     component: ModifyPostView 
   }
+
 ]
 
 const router = createRouter({

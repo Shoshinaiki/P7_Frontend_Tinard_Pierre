@@ -51,7 +51,8 @@ export default {
   .container {
     display: flex;
     flex-direction: column;
-    background-color: white;
+    justify-content: center;
+    background-color: #FFD7D7;
     border: 5px #FD2001;
     border-radius: 15px;
     border: solid 1px #4E5166;
@@ -62,13 +63,8 @@ export default {
     width: 30rem;
   }
 
-
-  body {
-    margin: 1.5rem;
-  }
-
   .infos {
-    margin: 5rem;
+    margin-bottom: 2rem;
     font-size: 1.5rem;
   }
 
@@ -95,14 +91,17 @@ export default {
     margin: 1.5rem;
     padding: 0.5rem;
     border-radius: 10px;
-    border: 1px solid #FFD707;
+     background-color: #FD2D01;
+  border: 1px solid #4E5166;
+  color: white;
+  font-weight: bold;
   }
 
- @media all and (max-width: 1550px) {
-  .container {
-    height: 32rem;
-  }
-}
+//  @media all and (max-width: 1550px) {
+//   .container {
+//     height: 32rem;
+//   }
+// }
 
 @media all and (max-width: 1000px) {
   
