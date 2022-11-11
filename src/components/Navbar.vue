@@ -1,19 +1,19 @@
 <template>
-    <header>
-        <img class="imgH1" src="../../src/assets/icon-left-font-monochrome-red.png" height="100" width="200" alt="logo">
-        <div class="nav">
-          <nav>
-            <router-link v-if="currentUser" to="/profil">Profil</router-link> 
-            <router-link v-if="!currentUser" to="/inscription">Signup</router-link> 
-            <router-link v-if="!currentUser" to="/login">Login</router-link> 
-            <router-link v-if="currentUser" to="/admin">Admin</router-link>
-            <router-link v-if="currentUser" to= "/newpost">NewPost</router-link>
-            <router-link v-if="currentUser" to= "/">Home</router-link>
-            <button class="logout" @click="Logout" v-if="currentUser" >Logout</button>
-          </nav>
-        </div>
-        <link rel="stylesheet" ref="https://fonts.googleapis.com/css?family=Lato">
-    </header>
+  <header>
+    <img class="imgH1" src="../../src/assets/icon-left-font-monochrome-red.png" height="100" width="200" alt="logo">
+    <div class="nav">
+      <nav>
+        <router-link v-if="currentUser" to="/profil">Profil</router-link> 
+        <router-link v-if="!currentUser" to="/inscription">Signup</router-link> 
+        <router-link v-if="!currentUser" to="/login">Login</router-link> 
+        <router-link v-if="currentUser" to="/admin">Admin</router-link>
+        <router-link v-if="currentUser" to= "/newpost">NewPost</router-link>
+        <router-link v-if="currentUser" to= "/">Home</router-link>
+        <button class="logout" @click="Logout" v-if="currentUser" >Logout</button>
+      </nav>
+    </div>
+    <link rel="stylesheet" ref="https://fonts.googleapis.com/css?family=Lato">
+  </header>
 </template>
 
  <script>
@@ -36,11 +36,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 header {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  // margin: 2.5rem auto;
   background-color: #FFD7D7;
   height: 8rem;
   width: 70%;
@@ -112,7 +112,6 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40rem;
     height: auto;
   }
 
@@ -141,26 +140,26 @@ a {
 
 @media all and (max-width: 1000px) {
 
-.socialNetwork {
-  display: flex;
-  justify-content: flex-start;
-  margin: 0rem 0rem 1rem 4rem;
-  padding-left: 0;
-}
-  
-.nav {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  margin: 0 0 0 2rem;
-  padding: 0;
-  width: auto;
+  .socialNetwork {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0rem 0rem 1rem 4rem;
+    padding-left: 0;
+  }
+    
+  .nav {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 0 0 0 2rem;
+    padding: 0;
+    width: auto;
   }
 }
 
 @media all and (max-width: 685px) {
+
   header {
-    width: 20rem;
     height: 15rem;
     margin: 2rem auto;
   }
@@ -171,8 +170,8 @@ a {
   
   .imgH1 {
     margin: 0 0 0 0.2rem;
-
   }
+
   .nav {
   display: flex;
   justify-content: flex-start;
@@ -182,4 +181,26 @@ a {
   width: auto;
   }
 }
+
+@media all and (max-width: 500px) {
+
+  header {
+    height: 25rem;
+    margin: 2rem auto;
+  }
+
+  .imgH1 {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    display: flex;
+  }
+
+  .logout {
+  margin: 1.5rem 0;
+  }
+}
+
 </style>

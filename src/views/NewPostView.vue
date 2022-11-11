@@ -1,16 +1,16 @@
 <template>
-    <div class="NewPost">
-      <h1 class="postH1">Créer un post</h1>
-      <div class="info"><p>Veuillez remplir tout les champs et valider :</p></div>
-      <form @submit.prevent="createPost">
-        <div class="dataPost">
-          <input type="text" id="titre" v-model="this.titre" name="titre" placeholder=" titre" required>
-          <textarea name="texte" id="text" cols="30" rows="10" required placeholder=" content" v-model="this.content"></textarea>
-          <input type="file" ref="file" @change="onFileSelected" required/>
-           <button type="submit" class="button_validate">Poster</button> 
-        </div>
-      </form>
-    </div>
+  <div class="NewPost">
+    <h1 class="postH1">Créer un post</h1>
+    <div class="info"><p>Veuillez remplir tout les champs et valider :</p></div>
+    <form @submit.prevent="createPost">
+      <div class="dataPost">
+        <input type="text" id="titre" v-model="this.titre" name="titre" placeholder=" titre" required>
+        <textarea name="texte" id="text" cols="30" rows="10" required placeholder=" content" v-model="this.content"></textarea>
+        <input type="file" ref="file" @change="onFileSelected" required/>
+        <button type="submit" class="button_validate">Poster</button> 
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -41,7 +41,8 @@ export default {
       data.append('file', this.file, this.file.name);
       data.append('titre', this.titre);
       data.append('text', this.content);
-      data.append('author', this.currentUser.lastName);
+      data.append('user', this.currentUser.lastName);
+      data.append('userId', this.currentUser.userId);
       postService.createPost(data)
       .then(() => {
       this.$router.push("/")
@@ -56,93 +57,105 @@ export default {
 </script>
 
 <style lang="scss" scoped>
- .NewPost {
-    display: flex;
-    flex-direction: column;
-    background-color: #FFD7D7;
-    justify-content: center;
-    border: 5px #FD2001;
-    border-radius: 15px;
-    border: solid 1px #4E5166;
-    box-shadow: 10px 5px 5px #4e5166;
-    height: 35rem;
-    margin-left: auto;
-    margin-right: auto;
-    width: 30rem;
-  }
 
-  .postH1 {
-    margin-bottom: 0.5rem;
-  }
+.NewPost {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFD7D7;
+  justify-content: center;
+  border: 5px #FD2001;
+  border-radius: 15px;
+  border: solid 1px #4E5166;
+  box-shadow: 10px 5px 5px #4e5166;
+  height: 35rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30rem;
+}
 
-  .info {
-    margin-bottom: 1.5rem;
-  }
+.postH1 {
+  margin-bottom: 0.5rem;
+}
 
-  .dataPost {
-    display: flex;
-    flex-direction: column;
-    margin: 1rem 3rem;
-  }
+.info {
+  margin-bottom: 1.5rem;
+}
 
-  #titre {
-    margin-bottom: 1rem;
-    background-color: #f5f5f5;
-    border: 1px solid #4E5166;
-    height: 20px;
-    border-radius: 5px;
-  }
+.dataPost {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 3rem;
+}
 
-  #text {
-    margin-bottom: 1rem;
-    background-color: #f5f5f5;
-    border: 1px solid #4E5166;
-    border-radius: 5px;
-  }
+#titre {
+  margin-bottom: 1rem;
+  background-color: #f5f5f5;
+  border: 1px solid #4E5166;
+  height: 20px;
+  border-radius: 5px;
+}
 
-  .button_validate {
-    margin: 1.5rem;
+#text {
+  margin-bottom: 1rem;
+  background-color: #f5f5f5;
+  border: 1px solid #4E5166;
+  border-radius: 5px;
+}
+
+.button_validate {
+  margin: 1.5rem;
   padding: 0.5rem;
   border-radius: 10px;
   background-color: #FD2D01;
   border: 1px solid #4E5166;
   color: white;
   font-weight: bold;
+}
 
-  }
-
- @media all and (max-width: 1550px) {
+@media all and (max-width: 1550px) {
   .container {
     height: 32rem;
   }
 }
 
 @media all and (max-width: 1000px) {
-  
   .NewPost {
     height: 25rem;
+    padding: 2.5rem;
   }
-
   .postH1 {
     margin: 0.5rem;
   }
-
-
   .infos {
     margin: 2rem;
   }
 }
 
-  @media all and (max-width: 515px) {
+@media all and (max-width: 820px) {
+  .NewPost {
+    width: 25rem;
+  }
+}
+
+@media all and (max-width: 710px) {
   .NewPost {
     width: 20rem;
   }
+}
 
-  .button_delete, .button_modify {
-    display: flex;
-    margin-left: 6rem;
+@media all and (max-width: 600px) {
+  .NewPost {
+    width: 16rem;
+  }
+  .button_validate {
+    margin: 1rem;
+    padding: 0.5rem;
     border-radius: 10px;
-    border: 1px solid #FFD707;
+    background-color: #FD2D01;
+    border: 1px solid #4E5166;
+    color: white;
+    font-weight: bold;
   }
 }
+
 </style>
