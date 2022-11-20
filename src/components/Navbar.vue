@@ -4,12 +4,12 @@
     <div class="nav">
       <nav>
         <router-link v-if="currentUser" to="/profil">Profil</router-link> 
-        <router-link v-if="!currentUser" to="/inscription">Signup</router-link> 
+        <router-link v-if="!currentUser" to="/inscription">Sign up</router-link> 
         <router-link v-if="!currentUser" to="/login">Login</router-link> 
         <router-link v-if="currentUser" to="/admin">Admin</router-link>
         <router-link v-if="currentUser" to= "/newpost">NewPost</router-link>
         <router-link v-if="currentUser" to= "/">Home</router-link>
-        <button class="logout" @click="Logout" v-if="currentUser" >Logout</button>
+        <button class="logout" @click="Logout" v-if="currentUser" >Log out</button>
       </nav>
     </div>
     <link rel="stylesheet" ref="https://fonts.googleapis.com/css?family=Lato">
