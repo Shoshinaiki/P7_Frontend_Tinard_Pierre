@@ -16,7 +16,7 @@
     </div>
     <img class="image" :src="post.imageUrl">
     <div class="postText"><p> {{post.text}}</p></div>
-    <div class="context"><div class="postBy"><p>Créé par: {{post.user}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
+    <div class="context"><div class="postBy"><p>Créé par: {{post.User.firstName}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
     <div class="buttonPost">
       <div><button @click="modifyPost(post.id)" v-if="post.user == currentUser.lastName || currentUser.role == true" class="button_modify" type="submit">Modifier</button></div>
       <div><button @click="deletePost(post.id)" class="button_delete" v-if="post.user == currentUser.lastName || currentUser.role == true" type="submit">Supprimer</button></div>
@@ -65,7 +65,6 @@ export default {
       this.$router.push({path:'/modifypost', query: {id: postid}})
     },
     likePost(id) {
-      console.log(id)
      postService.likePost(id, this.currentUser.userId)
      .then(() => {
         postService.getAllPost() 
