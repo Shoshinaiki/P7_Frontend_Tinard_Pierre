@@ -64,7 +64,7 @@ a {
   padding: 1rem;
 
   &.router-link-exact-active {
-  color: #FD2001;
+  color: #973535;
   }
 }
 
@@ -74,7 +74,7 @@ a {
   border-radius: 10px;
   background-color: #FD2D01;
   border: 1px solid #4E5166;
-  color: white;
+  color: black;
   font-weight: bold;
 }
 

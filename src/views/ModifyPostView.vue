@@ -13,7 +13,7 @@
           <input v-model="this.titre" type="text" />
           <textarea name="texte" id="text" cols="30" rows="10" placeholder="content" v-model="this.content"></textarea>
           <input type="file" ref="file" @change="onFileSelected" />
-          <button type="submit" class="button_validate">Poster</button> 
+          <button type="submit" class="button_validate">Modifier</button> 
         </form>
       </div>
     </div>

@@ -1,15 +1,16 @@
 <template>
   <div v-for="post in posts.slice().reverse()" :key="post.id" class="card">
     <div class="postTitle"><p>Titre: {{post.titre}}</p>
-      <div class="heartcontainer">
+      <div class="likecontainer">
         <div class="infobulle">
-          <div class="infobulle-like" v-if="heartLike === 1">
-            Pour liker le post, cliquez sur le coeur <br> Pour enlever votre like, cliquez une fois sur le coeur
+          <div class="infobulle-like">
+            Pour liker le post, cliquez sur le pouce <br> Pour enlever votre like, cliquez une fois sur le pouce
           </div>
         </div>
-        <button class="like" @click="likePost(post.id)">
-          <i v-if="(post.PostHasLikes[0].userLiked).includes(currentUser.userId)" class="fas fa-heart red"></i>
-          <i v-else class="fas fa-heart black" @mouseover="heartLike = 1" @mouseout="heartLike = 0"></i>
+        <button class="like" @click= "likePost(post.id)"> 
+          <p>Like</p>
+          <i v-if="(post.PostHasLikes[0].userLiked).includes(currentUser.userId)" class="fas fa-thumbs-up red"></i>
+          <i v-else class="fas fa-thumbs-up black" @mouseover="thumbsLike = 1" @mouseout="thumbsLike = 0"></i>
         </button>
         <p>{{post.PostHasLikes[0].like}}</p>
       </div>
@@ -18,8 +19,8 @@
     <div class="postText"><p> {{post.text}}</p></div>
     <div class="context"><div class="postBy"><p>Créé par: {{post.User.firstName}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
     <div class="buttonPost">
-      <div><button @click="modifyPost(post.id)" v-if="post.user == currentUser.lastName || currentUser.role == true" class="button_modify" type="submit">Modifier</button></div>
-      <div><button @click="deletePost(post.id)" class="button_delete" v-if="post.user == currentUser.lastName || currentUser.role == true" type="submit">Supprimer</button></div>
+      <div><button @click="modifyPost(post.id)" v-if="post.UserId == currentUser.userId || currentUser.role == true" class="button_modify" type="submit">Modifier</button></div>
+      <div><button @click="deletePost(post.id)" class="button_delete" v-if="post.UserId == currentUser.userId || currentUser.role == true" type="submit">Supprimer</button></div>
     </div>
   </div>
 </template> 
@@ -33,7 +34,7 @@ export default {
    data(){
         return{
            posts: [],
-           heartLike : 0,
+           thumbsLike : 0, 
         }
     },
     computed: {
@@ -122,10 +123,13 @@ export default {
   position: relative;
 }
 
-.infobulle-like {
+.infobulle-like:hover {
+  opacity: 1;
+}
+.infobulle-like { 
   position: absolute;
   bottom: 0px;
-  left: 100px;
+  left: 45px;
   width: 260px;
   color: #000000;
   padding: 5px;
@@ -133,9 +137,10 @@ export default {
   background-color: #ffffe1;
   border: 1px solid #000000;
   border-radius: 5px;
-}
+  opacity: 0;
+} 
 
-.heartcontainer {
+.likecontainer {
   position: relative;
   width: 3.5rem;
   height: 3.5rem;
@@ -146,15 +151,19 @@ export default {
 }
 
 .like {
+  display: flex;
   border: none;
   background: #FFD7D7;
+  font-size: 1rem;
 }
 
-.fas.fa-heart.black {
+.fa-thumbs-up.black {
+  margin-top: 1rem;
   color: black;
 }
 
-.fas.fa-heart.red {
+.fa-thumbs-up.red {
+  margin-top: 1rem;
   color: red;
 }
 
@@ -179,7 +188,7 @@ p {
   border-radius: 10px;
   background-color: #FD2D01;
   border: 1px solid #4E5166;
-  color: white;
+  color: black;
   font-weight: bold;
   padding: 0.5rem;
   margin: 1rem;
