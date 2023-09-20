@@ -87,7 +87,7 @@ export default {
 .card {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: #FFD7D7;
   border-radius: 15px;
   border: solid 1px #4E5166;
   box-shadow: 5px 2px 2px #4e5166;
@@ -112,6 +112,8 @@ export default {
   border-radius: 15px;
   border: solid 1px #4E5166;
   box-shadow: 5px 1px 1px #4e5166;
+  background-color: white;
+
   width: auto;
 }
 
@@ -202,6 +204,8 @@ p {
   padding: 1rem 2rem;
   border-radius: 10px;
   border: 1px solid #4E5166;
+  background-color: #FD2D01;
+  font-weight: bold;
 }
 
 @media all and (max-width: 500px) {

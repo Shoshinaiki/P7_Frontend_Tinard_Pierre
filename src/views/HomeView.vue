@@ -1,10 +1,10 @@
 <template>
   <div v-for="post in posts.slice().reverse()" :key="post.id" class="card">
-    <div class="postTitle"><p>Titre: {{post.titre}}</p>
+    <div class="postTitle"><h1>Titre: {{post.titre}}</h1>
       <div class="likecontainer">
         <div class="infobulle">
           <div class="infobulle-like">
-            Pour liker le post, cliquez sur le pouce <br> Pour enlever votre like, cliquez une fois sur le pouce
+            Pour liker le post, cliquez une 1ère fois sur le pouce <br> Pour enlever votre like, cliquez une 2ème fois sur le pouce
           </div>
         </div>
         <button class="like" @click= "likePost(post.id)"> 
@@ -15,7 +15,7 @@
         <p>{{post.PostHasLikes[0].like}}</p>
       </div>
     </div>
-    <img class="image" :src="post.imageUrl">
+    <img class="image" :src="post.imageUrl" v-bind:alt="post.text">
     <div class="postText"><p> {{post.text}}</p></div>
     <div class="context"><div class="postBy"><p>Créé par: {{post.User.firstName}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
     <div class="buttonPost">
@@ -129,9 +129,10 @@ export default {
 .infobulle-like { 
   position: absolute;
   bottom: 0px;
-  left: 45px;
+  left: 55px;
   width: 260px;
   color: #000000;
+  margin-bottom: 1rem;
   padding: 5px;
   font-size: 0.9rem;
   background-color: #ffffe1;
@@ -173,6 +174,15 @@ export default {
   border-radius: 10px;
   object-fit: cover;
 }
+
+
+h1 {
+  font-size: 1em;
+  font-weight: 100;
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
 
 p {
   margin: 1rem;

@@ -6,7 +6,7 @@
         <li><span>Nom: {{this.currentUser.lastName}}</span></li>
         <li><span>Prénom: {{this.currentUser.firstName}}</span></li>
         <li class="eMail"><span>E-mail: {{this.currentUser.email}}</span></li>
-        <li><span>Admin: {{this.currentUser.role}}</span></li>
+        <li><span>Rôle: {{this.Role}}</span></li>
       </ul>
     </div>
     <div>
@@ -20,7 +20,14 @@
 
 import userService from "../services/user.service"
 export default {
+
   name: 'ProfilView',
+
+  data(){
+        return{
+           Role : "user" 
+        }
+    },
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
@@ -29,6 +36,11 @@ export default {
   mounted() {
     if (!this.currentUser) {
       this.$router.push("/login");
+    }
+    else {
+      if (this.currentUser.role == true) {
+        this.Role = "admin"
+      } 
     }
   },
    methods: {

@@ -6,7 +6,7 @@
         <router-link v-if="currentUser" to="/profil">Profil</router-link> 
         <router-link v-if="!currentUser" to="/inscription">Sign up</router-link> 
         <router-link v-if="!currentUser" to="/login">Login</router-link> 
-        <router-link v-if="currentUser" to="/admin">Admin</router-link>
+        <router-link v-if="currentUser && currentUser.role == true" to="/admin">Admin</router-link>
         <router-link v-if="currentUser" to= "/newpost">NewPost</router-link>
         <router-link v-if="currentUser" to= "/">Home</router-link>
         <button class="logout" @click="Logout" v-if="currentUser" >Log out</button>
