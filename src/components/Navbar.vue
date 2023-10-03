@@ -53,6 +53,7 @@ header {
 .nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: auto;
 }
 
@@ -61,7 +62,7 @@ a {
   font-size: 1.2rem;
   align-items: center;
   color: #2c3e50;
-  padding: 1rem;
+  padding: 2rem;
 
   &.router-link-exact-active {
   color: #973535;
@@ -200,6 +201,13 @@ a {
 
   .logout {
   margin: 1.5rem 0;
+  }
+}
+
+@media all and (max-width: 280px) {
+  header {
+    height: 25rem;
+    width: 80%;
   }
 }
 

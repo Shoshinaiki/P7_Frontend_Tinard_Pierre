@@ -1,22 +1,22 @@
 <template>
-  <div v-for="post in posts.slice().reverse()" :key="post.id" class="card">
-    <div class="postTitle"><h1>Titre: {{post.titre}}</h1>
+    <div v-for="post in posts" :key="post.id" class="card">
+    <div class="postTitle"><h1> {{post.titre}}</h1>
       <div class="likecontainer">
         <div class="infobulle">
           <div class="infobulle-like">
-            Pour liker le post, cliquez une 1ère fois sur le pouce <br> Pour enlever votre like, cliquez une 2ème fois sur le pouce
+            Pour liker le post, cliquez une 1ère fois sur le pouce. <br> Pour enlever votre like, cliquez une 2ème fois sur le pouce.
           </div>
         </div>
         <button class="like" @click= "likePost(post.id)"> 
-          <p>Like</p>
+          <p class="pLike">Like</p>
           <i v-if="(post.PostHasLikes[0].userLiked).includes(currentUser.userId)" class="fas fa-thumbs-up red"></i>
           <i v-else class="fas fa-thumbs-up black" @mouseover="thumbsLike = 1" @mouseout="thumbsLike = 0"></i>
         </button>
-        <p>{{post.PostHasLikes[0].like}}</p>
+        <p class="compteur">{{post.PostHasLikes[0].like}}</p>
       </div>
     </div>
     <img class="image" :src="post.imageUrl" v-bind:alt="post.text">
-    <div class="postText"><p> {{post.text}}</p></div>
+    <div class="postText"> {{post.text}}</div>
     <div class="context"><div class="postBy"><p>Créé par: {{post.User.firstName}}</p></div> <div class="postAt"><p> le : {{post.createdAt.split("T")[0] + " à " + post.createdAt.split("T")[1].split(".")[0]}}</p></div></div>
     <div class="buttonPost">
       <div><button @click="modifyPost(post.id)" v-if="post.UserId == currentUser.userId || currentUser.role == true" class="button_modify" type="submit">Modifier</button></div>
@@ -109,6 +109,7 @@ export default {
   border-radius: 15px;
   border: solid 1px #4E5166;
   box-shadow: 5px 1px 1px #4e5166;
+  padding: 1rem;
   width: auto;
 }
 
@@ -128,9 +129,11 @@ export default {
 }
 .infobulle-like { 
   position: absolute;
+  display: flex;
+  flex-flow: wrap;
   bottom: 0px;
-  left: 55px;
-  width: 260px;
+  left: -8.5rem;
+  width: 16rem;
   color: #000000;
   margin-bottom: 1rem;
   padding: 5px;
@@ -148,6 +151,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: nowrap;
+  margin-left: 2rem;
   cursor: pointer;
 }
 
@@ -159,12 +164,12 @@ export default {
 }
 
 .fa-thumbs-up.black {
-  margin-top: 1rem;
+  margin: 1rem;
   color: black;
 }
 
 .fa-thumbs-up.red {
-  margin-top: 1rem;
+  margin: 1rem;
   color: red;
 }
 
@@ -179,13 +184,17 @@ export default {
 h1 {
   font-size: 1em;
   font-weight: 100;
-  margin-top: 1em;
-  margin-left: 1em;
+  margin-top: 1.2em;
+  margin-left: 1rem;
 }
 
 
-p {
-  margin: 1rem;
+.pLike, .compteur {
+  margin: 1rem  0.1rem;
+}
+
+.postBy, .postAt {
+  padding: 0.5rem;
 }
 
 .buttonPost {
@@ -212,6 +221,16 @@ p {
   .infos {
     margin: 2rem;
   }
+
+  .fa-thumbs-up.black {
+    margin: 1rem;
+    color: black;
+  }
+
+  .fa-thumbs-up.red {
+    margin: 1rem;
+    color: red;
+  }
 }
 
 @media all and (max-width: 685px) {
@@ -230,7 +249,18 @@ p {
   }
   p {
     padding: 0.5rem;
+    margin-left: 2rem;
   }
+
+  .fa-thumbs-up.black {
+    margin: 1.5rem 0;
+    color: black;
+  }
+
+ .fa-thumbs-up.red {
+   margin: 1.5rem 0;
+   color: red;
+ }
   .button_modify, .button_delete {
     display: flex;
     border-radius: 10px;
@@ -240,9 +270,30 @@ p {
   }
 }
 
-@media all and (max-width: 685px) {
-  .users {
-    margin-left: 6rem;
+@media all and (max-width: 650px) {
+
+  .pLike {
+     margin: 1rem 0.5rem 1rem 0.5rem;
+  }
+  .fa-thumbs-up.black {
+    margin: 1.5rem 0;
+    color: black;
+  }
+
+  .fa-thumbs-up.red {
+    margin: 1.5rem 0;
+    color: red;
+  }
+}
+
+@media all and (max-width: 540px) {
+  .fa-thumbs-up.black {
+    margin: 1.5rem 0;
+    color: black;
+  }
+  .fa-thumbs-up.red {
+    margin: 1.5rem 0;
+    color: red;
   }
 }
 
@@ -250,5 +301,91 @@ p {
   .users { 
     margin-left: 4rem;
   }
+
+  .fa-thumbs-up.black {
+    margin: 1.5rem 0;
+    color: black;
+  }
+  .fa-thumbs-up.red {
+    margin: 1.5rem 0;
+    color: red;
+  }
 }
+
+@media all and (max-width: 430px) {
+
+  .fa-thumbs-up.black {
+    margin: 1.5rem 0;
+    color: black;
+  }
+  .fa-thumbs-up.red {
+    margin: 1.5rem 0;
+    color: red;
+  }
+}
+
+@media all and (max-width: 412px) {
+  .postText {
+    margin-left: 0;
+  }
+}
+
+@media all and (max-width: 375px) {
+
+
+  h1 {
+    font-size: 1em;
+    font-weight: 100;
+    margin-top: 1.2em;
+    margin-left: 0.2em;
+  }
+
+  .pLike {
+    margin: 1rem 0.5rem 1rem 0.5rem;
+  }
+
+  .infobulle-like {
+    left: -110px;
+  }
+
+  .fa-thumbs-up.black {
+    margin: 1.5rem 0;
+    color: black;
+  }
+  .fa-thumbs-up.red {
+    margin: 1.5rem 0;
+    color: red;
+  }
+
+  .postText {
+    margin-left: 0;
+  }
+}
+
+@media all and (max-width: 360px) {
+  h1 {
+    font-size: 1em;
+    margin-left: 0.2em;
+  }
+  .pLike {
+    margin: 1rem 0.5rem 1rem 0.5rem;
+    font-size: 1em;
+  }
+
+  .infobulle-like {
+    left: -110px;
+  }
+}
+
+@media all and (max-width: 280px) {
+
+  .pLike {
+    margin: 0.5rem 0;
+  }
+
+  p {
+    margin-left: 0;
+  }
+}
+
 </style>

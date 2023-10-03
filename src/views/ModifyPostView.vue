@@ -10,7 +10,7 @@
         <p class="champ">Veuillez remplir tout les champs et valider :</p><br>
         <form @submit.prevent="modifyPost">
           <label for="title">Titre</label>
-          <input v-model="this.titre" type="text" />
+          <input v-model="this.titre" type="text"/>
           <textarea name="texte" id="text" cols="30" rows="10" placeholder="content" v-model="this.content"></textarea>
           <input type="file" ref="file" @change="onFileSelected" />
           <button type="submit" class="button_validate">Modifier</button> 
