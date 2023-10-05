@@ -380,7 +380,7 @@ h1 {
 @media all and (max-width: 280px) {
 
   .pLike {
-    margin: 0.5rem 0;
+    margin: 1rem 0.5rem 1rem 0.5rem;
   }
 
   p {

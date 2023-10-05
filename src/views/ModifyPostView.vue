@@ -1,7 +1,7 @@
 <template>
   <div class="modifyPost">
     <div class="card">
-      <div class="postTitle"><p>Titre: {{post.titre}}</p><div class="heartcontainer"><p>{{post.like}}</p></div></div>
+      <div class="postTitle"><p> {{post.titre}}</p><div class="heartcontainer"><p>{{post.like}}</p></div></div>
       <img class="image" :src="post.imageUrl">
       <div class="postText"><p> {{post.text}}</p></div>
       <div class="context"><div class="postBy"><p>Créé par: {{post.user}}</p></div> <div class="postAt"></div></div>
